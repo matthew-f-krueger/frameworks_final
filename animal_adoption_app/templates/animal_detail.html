@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Detail</title>
+</head>
+<body>
+    <h1>{{ animal.name }} Detail</h1>
+    <p><strong>Type:</strong> {{ animal_type }}</p>
+    <p><strong>Price:</strong> ${{ animal.price }}</p>
+    <p><strong>Fosterable:</strong> {% if animal.fosterable %}Yes{% else %}No{% endif %}</p>
+    <p><strong>Image:</strong> {% if animal.image_path %}<img src="{% static animal.image_path %}" alt="{{ animal.name }}">{% else %}No image available{% endif %}</p>
+    
+    {% if animal_type == 'Dog' %}
+        <p><strong>Breed:</strong> {{ animal_info.breed }}</p>
+        <p><strong>Weight:</strong> {{ animal_info.weight }} lbs</p>
+        <p><strong>Age:</strong> {{ animal_info.age }} years old</p>
+        <p><strong>Personality:</strong> {{ animal_info.personality }}</p>
+        <p><strong>Up to date on vaccines:</strong> {% if animal_info.up_to_date_on_vaccines %}Yes{% else %}No{% endif %}</p>
+    {% elif animal_type == 'Cat' %}
+        <p><strong>Breed:</strong> {{ animal_info.breed }}</p>
+        <p><strong>Weight:</strong> {{ animal_info.weight }} lbs</p>
+        <p><strong>Age:</strong> {{ animal_info.age }} years old</p>
+        <p><strong>Personality:</strong> {{ animal_info.personality }}</p>
+        <p><strong>Up to date on vaccines:</strong> {% if animal_info.up_to_date_on_vaccines %}Yes{% else %}No{% endif %}</p>
+    {% elif animal_type == 'Lizard' %}
+        <p><strong>Species:</strong> {{ animal_info.species }}</p>
+        <p><strong>Age:</strong> {{ animal_info.age }} years old</p>
+        <p><strong>Temperature:</strong> {{ animal_info.temperature }} °F</p>
+    {% elif animal_type == 'Bird' %}
+        <p><strong>Species:</strong> {{ animal_info.species }}</p>
+        <p><strong>Age:</strong> {{ animal_info.age }} years old</p>
+        <p><strong>Wingspan:</strong> {{ animal_info.wingspan }} inches</p>
+    {% elif animal_type == 'Fish' %}
+        <p><strong>Species:</strong> {{ animal_info.species }}</p>
+        <p><strong>Length:</strong> {{ animal_info.length }} inches</p>
+        <p><strong>Food:</strong> {{ animal_info.food }}</p>
+    {% else %}
+        <p>Unknown animal type</p>
+    {% endif %}
+</body>
+</html>

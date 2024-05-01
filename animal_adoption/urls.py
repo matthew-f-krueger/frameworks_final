@@ -20,8 +20,9 @@ from animal_adoption_app import views
 from django.conf.urls import include
 
 urlpatterns = [
-    path('animal_adoption_app/', include('animal_adoption_app.urls')),
+    path('', include('animal_adoption_app.urls')),
     path('admin/', admin.site.urls),
     path('foster/', views.foster_list, name='foster_list'),
     path('adopt/', views.adopt_list, name='adopt_list'),
+    path('animal/<int:animal_id>/', views.animal_detail_view, name='animal_detail'),
 ]

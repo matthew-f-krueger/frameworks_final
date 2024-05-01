@@ -10,6 +10,13 @@
             height: 16rem;
             object-fit: cover;
         }
+        .card-link {
+            text-decoration: none;
+        }
+        .card-body h2,
+        .card-body p {
+            color: black;
+        }
     </style>
 </head>
 <body>
@@ -19,28 +26,30 @@
         {% for animal in adoption_list %}
         <div class="col mb-4 text-center">
             <div class="card" style="width: 18rem;">
-                {% if animal.image_path %}
-                <img class="card-img-top" src="{% static animal.image_path %}" alt="{{ animal.name }} Image" alt="Card image cap">
-                {% endif %}
-                <div class="card-body">
-                    <h2>{{ animal.name }}</h2>
-                    <p>Price: ${{ animal.price }}</p>
-                    <p> 
-                        {% if animal.cat %}
-                            Cat Breed: {{ animal.cat.breed }}
-                        {% elif animal.dog %}
-                            Dog Breed: {{ animal.dog.breed }}
-                        {% elif animal.lizard %}
-                            Lizard Species: {{ animal.lizard.species }}
-                        {% elif animal.bird %}
-                            Bird Species: {{ animal.bird.species }}
-                        {% elif animal.fish %}
-                            Fish Species: {{ animal.fish.species }}
-                        {% else %}
-                            Unknown
-                        {% endif %}
-                    </p>
-                </div>
+                <a href="{% url 'animal_detail' animal.id %}" class="card-link">
+                    {% if animal.image_path %}
+                    <img class="card-img-top" src="{% static animal.image_path %}" alt="{{ animal.name }} Image" alt="Card image cap">
+                    {% endif %}
+                    <div class="card-body">
+                        <h2>{{ animal.name }}</h2>
+                        <p>Price: ${{ animal.price }}</p>
+                        <p> 
+                            {% if animal.cat %}
+                                Cat Breed: {{ animal.cat.breed }}
+                            {% elif animal.dog %}
+                                Dog Breed: {{ animal.dog.breed }}
+                            {% elif animal.lizard %}
+                                Lizard Species: {{ animal.lizard.species }}
+                            {% elif animal.bird %}
+                                Bird Species: {{ animal.bird.species }}
+                            {% elif animal.fish %}
+                                Fish Species: {{ animal.fish.species }}
+                            {% else %}
+                                Unknown
+                            {% endif %}
+                        </p>
+                    </div>
+                </a>
             </div>
         </div>
         {% endfor %}
