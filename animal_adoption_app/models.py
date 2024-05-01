@@ -5,6 +5,7 @@ class Animal(models.Model):
     name = models.CharField(max_length=100, unique=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     fosterable = models.BooleanField(default=False)
+    image_path = models.CharField(max_length=255, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         if self.fosterable:
