@@ -1,6 +1,12 @@
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Animal, Dog, Cat, Lizard, Bird, Fish
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from .forms import SignUpForm
+from django import forms
 
 def index(request):
     my_dict={'insert_me': 'Cats are cool and stuff'}
@@ -34,6 +40,18 @@ def fish(request):
     fish = Fish.objects.all()
     return render(request, 'animal_adoption_app/fish.html', {'fish_list': fish})
 
+def homeward(request):
+    homeward_animals = Animal.objects.filter(shelter='Homeward Animal Shelter')
+    return render(request, 'animal_adoption_app/homeward.html', {'homeward_animals': homeward_animals})
+
+def cats_cradle(request):
+    cats_cradle_animals = Animal.objects.filter(shelter='Cats Cradle Shelter Inc')
+    return render(request, 'animal_adoption_app/cats_cradle.html', {'cats_cradle_animals': cats_cradle_animals})
+
+def minn_kota(request):
+    minn_kota_animals = Animal.objects.filter(shelter='Minn-Kota PAAWS')
+    return render(request, 'animal_adoption_app/minn_kota.html', {'minn_kota_animals': minn_kota_animals})
+
 def animal_detail_view(request, animal_id):
     animal = get_object_or_404(Animal, pk=animal_id)
     if hasattr(animal, 'dog'):
@@ -56,3 +74,46 @@ def animal_detail_view(request, animal_id):
         animal_info = None
 
     return render(request, 'animal_detail.html', {'animal': animal, 'animal_type': animal_type, 'animal_info': animal_info})
+
+def login_user(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            
+            return redirect('index')
+        else:
+           
+            return redirect('login')
+
+    else:
+        return render(request, 'animal_adoption_app/login.html', {})
+
+def logout_user(request):
+    logout(request)
+    
+    return redirect('index')
+
+def register_user(request):
+    form = SignUpForm()
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            
+            return redirect('index')
+        else:
+            
+            return redirect('register')
+
+    else:
+        return render(request, 'animal_adoption_app/register.html', {'form' : form})
+
+
+    

@@ -33,4 +33,12 @@ urlpatterns = [
     path('lizards/', views.lizards, name='lizards'),
     path('birds/', views.birds, name='birds'),
     path('fish/', views.fish, name='fish'),
+
+    path('login/', views.login_user, name='login'),
+    path('logout/', views.logout_user, name='logout'),
+    path('register/', views.register_user, name='register'),
+
+    path('homeward/', views.homeward, name='homeward'),
+    path('cats-cradle/', views.cats_cradle, name='cats_cradle'),
+    path('minn-kota/', views.minn_kota, name='minn_kota'),
 ]

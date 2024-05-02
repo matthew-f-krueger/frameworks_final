@@ -1,0 +1,24 @@
+{% block content %}
+
+<h2>Register</h2>
+<p>Register a new account</p>
+
+<br />
+<br />
+<br />
+<div class="container">
+  <div class="row">
+    <center>
+      <div class="col-8">
+        <br />
+        <form method="POST" action="{% url 'register' %}">
+          {% csrf_token %} {{ form.as_p }}
+          <br />
+          <button type="submit" class="btn btn-secondary">Register</button>
+        </form>
+      </div>
+    </center>
+  </div>
+</div>
+
+{% endblock content %}

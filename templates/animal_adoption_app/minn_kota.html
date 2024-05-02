@@ -21,10 +21,10 @@
 </head>
 <body>
     {% load static %}
-    <h1 class="text-center mt-3 mb-4">Adopt</h1>
+    <h1 class="text-center mt-3 mb-4">Animals at Minn-Kota Shelter</h1>
     <div class="container">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
-            {% for animal in adoption_list %}
+            {% for animal in minn_kota_animals %}
             <div class="col mb-4 text-center">
                 <div class="card" style="width: 18rem;">
                     <a href="{% url 'animal_detail' animal.id %}" class="card-link">
@@ -36,7 +36,7 @@
                             <p> 
                                 {% if animal.cat %}
                                     Cat Breed: {{ animal.cat.breed }}
-                                    {% elif animal.dog %}
+                                {% elif animal.dog %}
                                     Dog Breed: {{ animal.dog.breed }}
                                     {% elif animal.lizard %}
                                     Lizard Species: {{ animal.lizard.species }}
@@ -46,9 +46,11 @@
                                     Fish Species: {{ animal.fish.species }}
                                 {% else %}
                                     Unknown
-                                    {% endif %}
+                                {% endif %}
                             </p>
-                            <p>Price: ${{ animal.price }}</p>
+                            {% if not animal.fosterable %}
+                                    <p class="card-text"><strong>Price:</strong> ${{ animal.price }}</p>
+                            {% endif %}
                         </div>
                     </a>
                 </div>
