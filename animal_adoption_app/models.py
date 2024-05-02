@@ -7,6 +7,14 @@ class Animal(models.Model):
     fosterable = models.BooleanField(default=False)
     image_path = models.CharField(max_length=255, blank=True, null=True)
 
+    SHELTER_CHOICES = [
+        ('Homeward Animal Shelter', 'Homeward Animal Shelter'),
+        ('Cats Cradle Shelter Inc', 'Cats Cradle Shelter Inc'),
+        ('Minn-Kota PAAWS', 'Minn-Kota PAAWS'),
+    ]
+
+    shelter = models.CharField(max_length=100, choices=SHELTER_CHOICES)
+
     def save(self, *args, **kwargs):
         if self.fosterable:
             self.price = 0

@@ -3,7 +3,6 @@ from django.shortcuts import render, get_object_or_404
 from .models import Animal, Dog, Cat, Lizard, Bird, Fish
 
 def index(request):
-    # return HttpResponse("Hello World!")
     my_dict={'insert_me': 'Cats are cool and stuff'}
     return render(request, 'animal_adoption_app/index.html', context=my_dict)
 
@@ -15,6 +14,25 @@ def adopt_list(request):
     adoption_list = Animal.objects.filter(fosterable=False)
     return render(request, 'animal_adoption_app/adopt.html', {'adoption_list': adoption_list})
 
+def dogs(request):
+    dogs = Dog.objects.all()
+    return render(request, 'animal_adoption_app/dogs.html', {'dog_list': dogs}) 
+
+def cats(request):
+    cats = Cat.objects.all()
+    return render(request, 'animal_adoption_app/cats.html', {'cat_list': cats})
+
+def lizards(request):
+    lizards = Lizard.objects.all()
+    return render(request, 'animal_adoption_app/lizards.html', {'lizard_list': lizards})
+
+def birds(request):
+    birds = Bird.objects.all()
+    return render(request, 'animal_adoption_app/birds.html', {'bird_list': birds})
+
+def fish(request):
+    fish = Fish.objects.all()
+    return render(request, 'animal_adoption_app/fish.html', {'fish_list': fish})
 
 def animal_detail_view(request, animal_id):
     animal = get_object_or_404(Animal, pk=animal_id)

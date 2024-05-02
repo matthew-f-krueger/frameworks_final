@@ -9,8 +9,11 @@
 <body>
     <h1>{{ animal.name }} Detail</h1>
     <p><strong>Type:</strong> {{ animal_type }}</p>
-    <p><strong>Price:</strong> ${{ animal.price }}</p>
     <p><strong>Fosterable:</strong> {% if animal.fosterable %}Yes{% else %}No{% endif %}</p>
+    {% if not animal.fosterable %}
+        <p class="card-text"><strong>Price:</strong> ${{ animal.price }}</p>
+    {% endif %}
+    <p><strong>Shelter:</strong> {{ animal.shelter }}</p>
     <p><strong>Image:</strong> {% if animal.image_path %}<img src="{% static animal.image_path %}" alt="{{ animal.name }}">{% else %}No image available{% endif %}</p>
     
     {% if animal_type == 'Dog' %}

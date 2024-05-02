@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Dogs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .card-img-top {
+            height: 16rem;
+            object-fit: cover;
+        }
+        .card-link {
+            text-decoration: none;
+        }
+        .card-body h2,
+        .card-body p {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    {% load static %}
+    <h1 class="text-center mt-3 mb-4">Available Dogs for Adoption or Foster</h1>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+            {% for dog in dog_list %}
+                <div class="col mb-4 text-center">
+                    <div class="card" style="width: 18rem;">
+                        <a href="{% url 'animal_detail' dog.animal.id %}" class="card-link">
+                            {% if dog.animal.image_path %}
+                                <img class="card-img-top" src="{% static dog.animal.image_path %}" alt="{{ dog.animal.name }} Image" alt="Card image cap">
+                            {% endif %}
+                            <div class="card-body">
+                                <h2 class="card-title">{{ dog.animal.name }}</h2>
+                                <p class="card-text"><strong>Breed:</strong> {{ dog.breed }}</p>
+                                <p class="card-text"><strong>Weight:</strong> {{ dog.weight }} lbs</p>
+                                <p class="card-text"><strong>Age:</strong> {{ dog.age }} years old</p>
+                                <p class="card-text"><strong>Fosterable or Adoptable:</strong> {% if dog.animal.fosterable %}Fosterable{% else %}Adoptable{% endif %}</p>
+                                {% if not dog.animal.fosterable %}
+                                    <p class="card-text"><strong>Price:</strong> ${{ dog.animal.price }}</p>
+                                {% endif %}
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="col text-center">No dogs available for adoption or foster.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

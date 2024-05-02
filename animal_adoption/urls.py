@@ -22,7 +22,15 @@ from django.conf.urls import include
 urlpatterns = [
     path('', include('animal_adoption_app.urls')),
     path('admin/', admin.site.urls),
+    
     path('foster/', views.foster_list, name='foster_list'),
     path('adopt/', views.adopt_list, name='adopt_list'),
+
     path('animal/<int:animal_id>/', views.animal_detail_view, name='animal_detail'),
+
+    path('dogs/', views.dogs, name='dogs'),
+    path('cats/', views.cats, name='cats'),
+    path('lizards/', views.lizards, name='lizards'),
+    path('birds/', views.birds, name='birds'),
+    path('fish/', views.fish, name='fish'),
 ]
