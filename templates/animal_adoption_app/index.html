@@ -12,92 +12,9 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <style>
-      body {
-        padding-left: 15px;
-      }
-    </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="">Animal Arrangements</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="">Home<span class="sr-only"></span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="adopt/">Adopt a Friend!</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="foster/">Foster a Friend!</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href=""
-              id="navbarDropdownMenuLink"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Animals
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="{% url 'dogs' %}">Dogs</a>
-              <a class="dropdown-item" href="{% url 'cats' %}">Cats</a>
-              <a class="dropdown-item" href="{% url 'lizards' %}">Lizards</a>
-              <a class="dropdown-item" href="{% url 'birds' %}">Birds</a>
-              <a class="dropdown-item" href="{% url 'fish' %}">Fish</a>
-            </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href=""
-              id="navbarDropdownMenuLink"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Shelters
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="{% url 'homeward' %}">Homeward Animal Shelter</a>
-              <a class="dropdown-item" href="{% url 'cats_cradle' %}">Cats Cradle Shelter Inc</a>
-              <a class="dropdown-item" href="{% url 'minn_kota' %}">Minn-Kota PAAWS</a>
-            </div>
-          </li>
-        </ul>
-        <div class="ms-auto">
-            <ul class="navbar-nav">
-                {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'register' %}">Register</a>
-                </li>
-            {% endif %}
-            </ul>
-        </div>
-      </div>
-    </nav>
+    {% include "navbar.html" %}
 
     <h1>Animal Adoption</h1>
     {{insert_me}}
