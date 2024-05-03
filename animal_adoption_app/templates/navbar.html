@@ -30,10 +30,14 @@
         .logo1 {
             border-radius: 20px;
             height: 150px;
-            width: 300px;
+            width: 350px;
         }
         .dropdown-item:hover {
             background-color: #343a40;
+        }
+        .logo {
+            width: 350px; /* Set a fixed width */
+            height: 150px; /* Set a fixed height */
         }
     </style>
 </head>
@@ -138,8 +142,8 @@
         });
 
         // Close dropdown menus when clicking outside
-        document.addEventListener('click', function(event) {
-            if (!event.target.matches('.nav-link')) {
+        document.body.addEventListener('click', function(event) {
+            if (!event.target.closest('.nav-item.dropdown')) {
                 var dropdowns = document.querySelectorAll('.dropdown-menu');
                 dropdowns.forEach(function(dropdown) {
                     dropdown.classList.remove('show');

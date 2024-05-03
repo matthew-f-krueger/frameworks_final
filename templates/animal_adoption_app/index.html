@@ -1,242 +1,229 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animal Adoption</title>
     <link rel="stylesheet" href="{% static 'css/styles.css'%}" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Animal Arrangements</title>
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f4f4f4;
-      }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
 
-      header {
-        background-color: #333;
-        color: #fff;
-        padding: 20px;
-        text-align: center;
-        height: 150px;
-      }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            height: 150px;
+        }
 
-      .logo {
-        align-self: center;
-      }
+        .logo {
+            align-self: center;
+        }
 
-      h1 {
-        margin: 0;
-        font-size: 36px;
-      }
+        .logo1{
+          margin-right: 0;
+          max-width: 100%;
+          height: auto;
+        }
 
-      .container {
-        max-width: 1200px;
-        margin: 20px auto;
-        padding: 0 20px;
-      }
+        h1 {
+            margin: 0;
+            font-size: 36px;
+        }
 
-      .image-gallery {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 40px;
-      }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
 
-      .image {
-        flex: 0 0 30%;
-        margin-bottom: 20px;
-        margin-left: 60px;
-      }
+        .image-gallery {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
 
-      .image img {
-        border-radius: 20px;
-        height: 150px;
-        width: 150px;
-      }
+        .image {
+            flex: 0 0 30%;
+            margin-bottom: 20px;
+            margin-left: 60px;
+        }
 
-      .mission-statement {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        margin-bottom: 40px;
-      }
+        .image img {
+            border-radius: 20px;
+            height: 150px;
+            width: 150px;
+        }
 
-      .contact-info {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        margin-bottom: 40px;
-      }
+        .mission-statement {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
 
-      .shelters {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        display: flex;
-        align-items: flex-start;
-      }
+        .contact-info {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
 
-      .shelter-info {
-        flex: 1;
-      }
+        .shelters {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: flex-start;
+        }
 
-      .shelter-info h2 {
-        font-size: 24px;
-        margin-bottom: 10px;
-      }
+        .shelter-info {
+            flex: 1;
+        }
 
-      .shelter-info p {
-        margin: 0;
-        line-height: 1.5;
-      }
+        .shelter-info h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
 
-      .shelter-image {
-        flex: 1;
-        margin-left: 20px;
-      }
+        .shelter-info p {
+            margin: 0;
+            line-height: 1.5;
+        }
 
-      .shelter-image img {
-        width: 100%;
-        border-radius: 8px;
-      }
-      .save-life-container {
-        background-image: url("static/images/saddog.jpg");
-        background-size: cover;
-        background-position: center;
-        text-align: center;
-        color: #fff;
-        padding: 40px;
-        border-radius: 8px;
-        margin-top: 40px;
-        position: relative;
-        height: 600px;
-      }
+        .shelter-image {
+            flex: 1;
+            margin-left: 20px;
+        }
 
-      .save-life-text {
-        position: absolute;
-        bottom: 20px;
-        left: 0;
-        right: 0;
-        font-size: 36px;
-        text-transform: uppercase;
-        text-shadow: 0 0 5px #000;
-        color: #fff;
-        margin: 0;
-        padding: 0;
-        font-weight: bold;
-      }
+        .shelter-image img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .save-life-container {
+            background-image: url("static/images/saddog.jpg");
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            margin-top: 40px;
+            position: relative;
+            height: 600px;
+        }
+
+        .save-life-text {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            font-size: 36px;
+            text-transform: uppercase;
+            text-shadow: 0 0 5px #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            font-weight: bold;
+        }
     </style>
-  </head>
-  <body>
-    {% include "navbar.html" %}
-    <div class="container">
-      <div class="image-gallery">
+</head>
+<body>
+{% include "navbar.html" %}
+<div class="container">
+    <div class="image-gallery">
         <div class="image">
-          <img src="static/images/dog.png" alt="Placeholder Image 1" />
-        </div>
-        <div class="image">
-          <img src="static/images/cat.png" alt="Placeholder Image 2" />
+            <img src="{% static 'images/dog.png' %}" alt="Placeholder Image 1" />
         </div>
         <div class="image">
-          <img src="static/images/bird.png" alt="Placeholder Image 3" />
+            <img src="{% static 'images/cat.png' %}" alt="Placeholder Image 2" />
         </div>
-      </div>
-
-      <div class="mission-statement">
-        <h1>Mission Statement</h1>
-        <p>
-          "Our mission at Animal Arrangements is to provide every animal with a
-          loving and secure home, regardless of their background. We believe
-          that every creature deserves compassion and care, and we are dedicated
-          to creating a world where no animal is left without shelter or love.
-          Through our commitment to rescue, rehabilitation, and responsible
-          adoption practices, we strive to make a lasting difference in the
-          lives of animals and the communities we serve. Together, we can create
-          a future where every animal finds their perfect arrangement—a forever
-          home filled with love and understanding."
-        </p>
-      </div>
-
-      <div class="shelters">
-        <div class="shelter-info">
-          <h1>Local Animal Shelters</h1>
-          <div class="shelter">
-            <h2>Homeward Animal Shelter</h2>
-            <p>Address: 1201 28th Ave N</p>
-            <p>Phone: 701-239-007</p>
-          </div>
-          <div class="shelter">
-            <h2>Cats Cradle Shelter Inc</h2>
-            <p>Address: 9th St S</p>
-            <p>Phone: 701-356-7877</p>
-          </div>
-          <div class="shelter">
-            <h2>Natural Pet Center</h2>
-            <p>Address: 3037 13th Ave S</p>
-            <p>Phone: 701-239-0101</p>
-          </div>
+        <div class="image">
+            <img src="{% static 'images/bird.png' %}" alt="Placeholder Image 3" />
         </div>
-        <div class="shelter-image">
-          <img src="static/images/Animal shelter.jpeg" alt="Shelter Image" />
-        </div>
-        <div class="shelter-image">
-          <img src="static/images/catsshelter.jpg" alt="Shelter Image" />
-        </div>
-      </div>
-      <br />
-      <br />
-
-      <div class="save-life-container">
-        <div class="save-life-text">
-          <h2
-            style="
-              font-size: 48px;
-              text-transform: uppercase;
-              color: #fff;
-              text-shadow: 0 0 10px #000;
-              font-style: italic;
-            "
-          >
-            Save a Life, Adopt Now!
-          </h2>
-        </div>
-      </div>
-
-      <div class="contact-info">
-        <h1>Contact Information</h1>
-        <p>
-          Email: contact@animalarrangements.com<br />
-          Phone: 123-456-7890<br />
-          Address: 123 Main Street, City, Country
-        </p>
-      </div>
     </div>
 
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+    <div class="mission-statement">
+        <h1>Mission Statement</h1>
+        <p>
+            "Our mission at Animal Arrangements is to provide every animal with a
+            loving and secure home, regardless of their background. We believe
+            that every creature deserves compassion and care, and we are dedicated
+            to creating a world where no animal is left without shelter or love.
+            Through our commitment to rescue, rehabilitation, and responsible
+            adoption practices, we strive to make a lasting difference in the
+            lives of animals and the communities we serve. Together, we can create
+            a future where every animal finds their perfect arrangement—a forever
+            home filled with love and understanding."
+        </p>
+    </div>
+
+    <div class="shelters">
+        <div class="shelter-info">
+            <h1>Local Animal Shelters</h1>
+            <div class="shelter">
+                <h2>Homeward Animal Shelter</h2>
+                <p>Address: 1201 28th Ave N</p>
+                <p>Phone: 701-239-007</p>
+            </div>
+            <div class="shelter">
+                <h2>Cats Cradle Shelter Inc</h2>
+                <p>Address: 9th St S</p>
+                <p>Phone: 701-356-7877</p>
+            </div>
+            <div class="shelter">
+                <h2>Natural Pet Center</h2>
+                <p>Address: 3037 13th Ave S</p>
+                <p>Phone: 701-239-0101</p>
+            </div>
+        </div>
+        <div class="shelter-image">
+            <img src="{% static 'images/Animal shelter.jpeg' %}" alt="Shelter Image" />
+        </div>
+        <div class="shelter-image">
+            <img src="{% static 'images/catsshelter.jpg' %}" alt="Shelter Image" />
+        </div>
+    </div>
+    <br />
+    <br />
+
+    <div class="save-life-container">
+        <div class="save-life-text">
+            <h2
+                    style="
+                            font-size: 48px;
+                            text-transform: uppercase;
+                            color: #fff;
+                            text-shadow: 0 0 10px #000;
+                            font-style: italic;
+                            "
+            >
+                Save a Life, Adopt Now!
+            </h2>
+        </div>
+    </div>
+
+    <div class="contact-info">
+        <h1>Contact Information</h1>
+        <p>
+            Email: contact@animalarrangements.com<br />
+            Phone: 123-456-7890<br />
+            Address: 123 Main Street, City, Country
+        </p>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-NR5Pdzp4u+iJ4ktAOLCIc6fJSf1GJfp3yG08QldoO+q1MS3Ed8P+vA+M5EIyWIlj" crossorigin="anonymous"></script>
+</body>
 </html>
