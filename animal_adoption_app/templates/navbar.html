@@ -2,6 +2,7 @@
 <style>
     body {
         padding-left: 15px;
+        font-family: 'Comic Sans MS', cursive;
     }
     .logout-link {
         color: red;
@@ -39,10 +40,10 @@
                 <a class="nav-link" href="{% url 'index' %}">Home<span class="sr-only"></span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'adopt_list' %}">Adopt a Friend!</a>
+                <a class="nav-link" href="/filter-adopt/?animal_type=#">Adopt a Friend!</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'foster_list' %}">Foster a Friend!</a>
+                <a class="nav-link" href="/filter-foster/?animal_type=#">Foster a Friend!</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="animalsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -62,10 +63,15 @@
                     Shelters
                 </a>
                 <div class="dropdown-menu" aria-labelledby="sheltersDropdown">
-                    <a class="dropdown-item" href="{% url 'homeward' %}">Homeward Animal Shelter</a>
-                    <a class="dropdown-item" href="{% url 'cats_cradle' %}">Cats Cradle Shelter Inc</a>
-                    <a class="dropdown-item" href="{% url 'minn_kota' %}">Minn-Kota PAAWS</a>
+                    <a class="dropdown-item" href="/filter_homeward/?animal_type=#">Homeward Animal Shelter</a>
+                    <a class="dropdown-item" href="/filter_cats_cradle/?animal_type=#' %}">Cats Cradle Shelter Inc</a>
+                    <a class="dropdown-item" href="/filter_minn_kota/?animal_type=#">Minn-Kota PAAWS</a>
                 </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'all_animals' %}">
+                    All Animals
+                </a>
             </li>
         </ul>
         <div class="ms-auto">

@@ -41,4 +41,13 @@ urlpatterns = [
     path('homeward/', views.homeward, name='homeward'),
     path('cats-cradle/', views.cats_cradle, name='cats_cradle'),
     path('minn-kota/', views.minn_kota, name='minn_kota'),
+
+    path('filter-adopt/', views.filter_adopt, name='filter_adopt'),
+    path('filter-foster/', views.filter_foster, name='filter_foster'),
+
+    path('filter_homeward/', views.filter_homeward, name='filter_homeward'),
+    path('filter_cats_cradle/', views.filter_cats_cradle, name='filter_cats_cradle'),
+    path('filter_minn_kota/', views.filter_minn_kota, name='filter_minn_kota'),
+
+    path('all-animals/', views.all_animals, name='all_animals'),
 ]

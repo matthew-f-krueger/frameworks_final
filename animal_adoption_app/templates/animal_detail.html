@@ -5,43 +5,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animal Detail</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive;
+            margin: 20px; 
+        }
+        h1 {
+            border-bottom: 2px solid #333; 
+            padding-bottom: 10px; 
+            margin-bottom: 20px; 
+        }
+        p {
+            margin-left: 20px; 
+        }
+        img {
+            max-width: 100%; 
+            height: auto; 
+            margin-top: 75px; 
+            margin-bottom: 50px; 
+            float: left; 
+            margin-right: 20px; 
+            width: 400px; 
+            border-radius: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin-bottom: 50px;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .request-info {
+            margin-top: 30px;
+        }
+    </style>
 </head>
 <body>
-    <h1>{{ animal.name }} Detail</h1>
-    <p><strong>Type:</strong> {{ animal_type }}</p>
-    <p><strong>Fosterable:</strong> {% if animal.fosterable %}Yes{% else %}No{% endif %}</p>
-    {% if not animal.fosterable %}
-        <p class="card-text"><strong>Price:</strong> ${{ animal.price }}</p>
-    {% endif %}
-    <p><strong>Shelter:</strong> {{ animal.shelter }}</p>
-    <p><strong>Image:</strong> {% if animal.image_path %}<img src="{% static animal.image_path %}" alt="{{ animal.name }}">{% else %}No image available{% endif %}</p>
-    
-    {% if animal_type == 'Dog' %}
-        <p><strong>Breed:</strong> {{ animal_info.breed }}</p>
-        <p><strong>Weight:</strong> {{ animal_info.weight }} lbs</p>
-        <p><strong>Age:</strong> {{ animal_info.age }} years old</p>
-        <p><strong>Personality:</strong> {{ animal_info.personality }}</p>
-        <p><strong>Up to date on vaccines:</strong> {% if animal_info.up_to_date_on_vaccines %}Yes{% else %}No{% endif %}</p>
-    {% elif animal_type == 'Cat' %}
-        <p><strong>Breed:</strong> {{ animal_info.breed }}</p>
-        <p><strong>Weight:</strong> {{ animal_info.weight }} lbs</p>
-        <p><strong>Age:</strong> {{ animal_info.age }} years old</p>
-        <p><strong>Personality:</strong> {{ animal_info.personality }}</p>
-        <p><strong>Up to date on vaccines:</strong> {% if animal_info.up_to_date_on_vaccines %}Yes{% else %}No{% endif %}</p>
-    {% elif animal_type == 'Lizard' %}
-        <p><strong>Species:</strong> {{ animal_info.species }}</p>
-        <p><strong>Age:</strong> {{ animal_info.age }} years old</p>
-        <p><strong>Temperature:</strong> {{ animal_info.temperature }} °F</p>
-    {% elif animal_type == 'Bird' %}
-        <p><strong>Species:</strong> {{ animal_info.species }}</p>
-        <p><strong>Age:</strong> {{ animal_info.age }} years old</p>
-        <p><strong>Wingspan:</strong> {{ animal_info.wingspan }} inches</p>
-    {% elif animal_type == 'Fish' %}
-        <p><strong>Species:</strong> {{ animal_info.species }}</p>
-        <p><strong>Length:</strong> {{ animal_info.length }} inches</p>
-        <p><strong>Food:</strong> {{ animal_info.food }}</p>
-    {% else %}
+    <a href="javascript:history.go(-1)" class="btn btn-secondary back-button">Back</a> 
+    <img src="{% static animal.image_path %}" alt="{{ animal.name }}"> 
+    <div class="container">
+        <h1>About {{ animal.name }}</h1>
+        <p><strong>Type:</strong> {{ animal_type }}</p>
+        <p><strong>Fosterable:</strong> {% if animal.fosterable %}Yes{% else %}No{% endif %}</p>
+        {% if not animal.fosterable %}
+            <p class="card-text"><strong>Price:</strong> ${{ animal.price }}</p>
+        {% endif %}
+        <p><strong>Shelter:</strong> {{ animal.shelter }}</p>
+        
+        {% if animal_type == 'Dog' %}
+            <p><strong>Breed:</strong> {{ animal_info.breed }}</p>
+            <p><strong>Weight:</strong> {{ animal_info.weight }} lbs</p>
+            <p><strong>Age:</strong> {{ animal_info.age }} years old</p>
+            <p><strong>Personality:</strong> {{ animal_info.personality }}</p>
+            <p><strong>Up to date on vaccines:</strong> {% if animal_info.up_to_date_on_vaccines %}Yes{% else %}No{% endif %}</p>
+        {% elif animal_type == 'Cat' %}
+            <p><strong>Breed:</strong> {{ animal_info.breed }}</p>
+            <p><strong>Weight:</strong> {{ animal_info.weight }} lbs</p>
+            <p><strong>Age:</strong> {{ animal_info.age }} years old</p>
+            <p><strong>Personality:</strong> {{ animal_info.personality }}</p>
+            <p><strong>Up to date on vaccines:</strong> {% if animal_info.up_to_date_on_vaccines %}Yes{% else %}No{% endif %}</p>
+        {% elif animal_type == 'Lizard' %}
+            <p><strong>Species:</strong> {{ animal_info.species }}</p>
+            <p><strong>Age:</strong> {{ animal_info.age }} years old</p>
+            <p><strong>Temperature:</strong> {{ animal_info.temperature }} °F</p>
+        {% elif animal_type == 'Bird' %}
+            <p><strong>Species:</strong> {{ animal_info.species }}</p>
+            <p><strong>Age:</strong> {{ animal_info.age }} years old</p>
+            <p><strong>Wingspan:</strong> {{ animal_info.wingspan }} inches</p>
+        {% elif animal_type == 'Fish' %}
+            <p><strong>Species:</strong> {{ animal_info.species }}</p>
+            <p><strong>Length:</strong> {{ animal_info.length }} inches</p>
+            <p><strong>Food:</strong> {{ animal_info.food }}</p>
+        {% else %}
         <p>Unknown animal type</p>
-    {% endif %}
+        {% endif %}
+    </div>
+    <div class="container">
+        <!-- Request Info Section -->
+        <h2 class="request-info">Request info about {{ animal.name }}:</h2>
+        <form id="requestInfoForm">
+            <div class="mb-3">
+                <label for="inputEmail" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" required>
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <button type="submit" class="btn btn-secondary">Request Info</button>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </form>
+    </div>
+    {% include "footer.html" %}
 </body>
 </html>
